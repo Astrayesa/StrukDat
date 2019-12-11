@@ -23,7 +23,7 @@ int main(){
 			}
 			cout<<endl;
 		}
-		cout<<"\n\nOpsi : \n(1)Baru (2)Siap (3)Cuci Piring (4)Tutup"<<endl<<">>> ";
+		cout<<"\n\nOpsi : \n(1)Baru (2)Siap (3)Bersihkan Meja (4)Tutup"<<endl<<">>> ";
 		cin>>menu;
 		switch(menu){
 			case '1':
@@ -68,13 +68,18 @@ int main(){
 					system("pause");
 					break;
 				}
-				for(int i=0; i<4; i++){
-						if(meja[tbl-1][i]!="0"){
-							piring.push(meja[tbl-1][i]);
-							meja[tbl-1][i]="0";
+				else
+				{
+					cout<<"\n<< Meja " << tbl << " telah dibersihkan >>\n\n";
+					system("pause");
+					for(int i=0; i<4; i++){
+							if(meja[tbl-1][i]!="0"){
+								piring.push(meja[tbl-1][i]);
+								meja[tbl-1][i]="0";
+							}
 						}
-					}
-				break;
+					break;
+				}
 			case '4':
 				cout<<"\n<< Terimakasih >>\n"<<endl;
 				return 0;
