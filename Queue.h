@@ -1,15 +1,16 @@
-#ifndef STACK_H
-#define STACK_H
+#ifndef QUEUE_H
+#define QUEUE_H
 #include <iostream>
 using namespace std;
 
-struct Note{
+struct Node{
 	string val;
-	Note *next;
+	Node *next;
 };
-class MyStack{
+class MyQueue{
 	private:
-		Note *head=NULL;
+		Node *head=NULL;
+		Node *tail=NULL;
 	public:
 		bool kosong(){
 			if(head==NULL)
@@ -19,38 +20,37 @@ class MyStack{
 		string Head(){
 			return head->val;
 		}
-		void push(string a){
-			Note *baru=new Note;
+		void enqueue(string a){
+			Node *baru=new Node;
 			baru->val=a;
 			baru->next=NULL;
 			if(kosong()){
 				head=baru;
+				tail=baru;
 			}
 			else{
-				baru->next=head;
-				head=baru;
+				tail->next=baru;
+				tail=tail->next;
 			}
 		}
-		string pop(){
+		string dequeue(){
 			string a=head->val;
-			Note *tmp=head->next;
+			Node *tmp=head->next;
 			delete head;
 			head=tmp;
 			return a;
 		}
 		void tampil(){
 			if(kosong()){
-				cout<<"<< Piring Kosong >>";
+				cout<<"<< Pesanan Kosong >>";
 			}
 			else{
-				cout<<"^\n|\n";
-				Note *bantu=head;
+				Node *bantu=head;
 				while(bantu!=NULL){
-					cout<<bantu->val<<endl;
+					cout<<bantu->val<<" <- ";
 					bantu=bantu->next;
 				}
 			}
 		}
 };
-
 #endif
